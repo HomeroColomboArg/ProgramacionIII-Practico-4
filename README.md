@@ -56,7 +56,7 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 | Responsable | Archivos y Carpetas Principales | Funcionalidad / Módulo |
 | :--- | :--- | :--- |
 | **Martin Alcaraz** |  | Deploy de la API |
-| **Federico Heinrich** | `README.md`, `ROADMAP.md`,  | Documentación técnica |
+| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`  | Documentación técnica |
 | **Matias Oviedo** |  | |
 | **Nahuel Cappa** | | |
 | **Homero Colombo** | |  |
@@ -69,39 +69,40 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     ├── package.json
     ├── pnpm-lock.yaml
     ├── settings.json                           
-    │── .gitignore  
-    │── controllers/
+    │── .gitignore                         # Archivos y carpetas ignorados por el control de versiones (incluye `node_modules`).
+    │── controllers/                       # Lógica de negocio y manejo de las peticiones respuestas.
     │   ├── alumnoController.js
     │   ├── 
     │   ├── 
     │   └── 
-    │── data/
+    │── data/ # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
     │   ├── extras/
     │   │       ├── sys-materias.json
     │   │       ├── sys-notas.json
     │   │       └── sys-profesores.json
     │   └── alumnos.json
+    │── models/                            # Clases en TypeScript utilizadas para instanciar y validar los objetos (ej. `alumno.model.ts`).
+    │   ├── extras/
+    │   │         ├── clase.model.ts
+    │   │         ├── nota.model.ts
+    │   │         └── profesor.model.ts
+    │   ├── alumno.model.ts
+    │   └── persona.model.ts
     │── core/
     │   └── server.js                       # Configuración y levantamiento del servidor HTTP.
-    │── routes/
-    │   ├── serviciosRoutes.js
-    │   ├── equipoRoutes.js 
-    │   ├── perfilRoutes.js 
-    │   └── autorizacionRoutes.js 
+    │── routes/                             # Definición de los endpoints de la API (alumnos).
+    │    ├── extras/
+    │    │       ├── materia.routes.js
+    │    │       ├── nota.routes.js
+    │    │       └── profesor.routes.js
+    │    ├── alumno.routes.js
+    │    ├──  
+    │    ├── 
+    │    └── 
     ├── ROADMAP.md              # Hoja de ruta y division de tareas
     └── README.md               # Documentacion general
 
-## 4. Estructura del Proyecto
-
-
-* `/routes/`: Definición de los endpoints de la API (alumnos).
-* `/controllers/`: Lógica de negocio y manejo de las peticiones/respuestas (ej. `alumnos.controller.ts`).
-* `/models/`: Clases en TypeScript utilizadas para instanciar y validar los objetos (ej. `alumno.model.ts`).
-* `/data/`: Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
-* `.env`: Variables de entorno locales (puertos, configuraciones). Omitido en el repositorio por seguridad.
-* `.gitignore`: Archivos y carpetas ignorados por el control de versiones (incluye `node_modules`).
-
-## 5. Endpoints y Documentación en Postman
+## Endpoints y Documentación en Postman
 
 Todos los endpoints fueron documentados y testeados directamente sobre la URL de producción.
 
@@ -146,11 +147,8 @@ Muestra de la estructura individual utilizada para registrar a los estudiantes d
 | **API / Backend** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) | [Ver Sitio]() |
 
 
-
-# Documentación #
 ### El archivo README.md debe incluir lo siguiente: ###
 
-- Nombre del proyecto
 - Un 90% de las funciones explicadas a detalle.
 - Documentación con ‘Postman’ de todos los métodos (GET, PUT, DELETE, POST).
 - Mínimo un ejemplo de la estructura de cada archivo JSON utilizado (no integrar varios “arrays” en un mismo archivo).
