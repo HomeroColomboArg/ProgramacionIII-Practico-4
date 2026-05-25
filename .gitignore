@@ -25,6 +25,19 @@ logs
 Thumbs.db
 
 # --
-vscode/
+.vscode/
 .husky/
 .eslintrc.json
+
+# Carpeta de compilación TypeScript
+dist/
+build/
+
+# Coverage de tests
+coverage/
+
+# Archivos temporales de TypeScript
+*.tsbuildinfo
+
+# pnpm específico
+pnpm-debug.log*
