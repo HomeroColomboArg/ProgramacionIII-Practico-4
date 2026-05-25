@@ -1,13 +1,14 @@
 {
-  "name": "tp3",
+  "name": "tp4",
   "version": "1.0.0",
   "description": "grupo0",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon --exec ts-node app.js",
+    "start": "ts-node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "lint": "npx standard",
-    "fix": "npx standard --fix",
+    "lint": "standard",
+    "fix": "standard --fix",
     "prepare": "husky"
   },
   "author": "",
@@ -15,13 +16,19 @@
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "prettier": "^3.8.3"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.1",
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "nodemon": "^3.1.14",
-    "standard": "^17.1.2"
-  }
+    "standard": "^17.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "packageManager": "pnpm@11.3.0+sha512.2c403d6594527287672b1f7056343a1f7c3634036a67ffabfcc2b3d7595d843768f8787148d1b57cf7956c90606bbd192857c363af19e96d2d0ec9ec5741d215"
 }
