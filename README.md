@@ -1,6 +1,7 @@
 # AlumnAPI
 
-Materia: Programacion III - Primer Cuatrimestre, 2do año 📚
+- Trabajo Practico N°4 
+- Materia: Programacion III - Primer Cuatrimestre, 2do año 📚
 
 ## 📖 ¿Que es AlumnAPI?
 
@@ -104,9 +105,6 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 ## Endpoints y Documentación en Postman
 
-Todos los endpoints fueron documentados y testeados directamente sobre la URL de producción.
-
-* **URL Base de la API (Render):** `[Pegar link del Web Service]`
 * **Documentación Completa (Postman):** `[Pegar link público de la Colección]`
 
 ### Rutas Disponibles
@@ -140,17 +138,16 @@ Muestra de la estructura individual utilizada para registrar a los estudiantes d
 }
 ```
 
-## 🚀 Deploys
+## 🚀 Deploy
 | Componente | Servicio | URL |
 | :--- | :--- | :--- |
-| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio]() |
 | **API / Backend** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) | [Ver Sitio]() |
 
 
-### El archivo README.md debe incluir lo siguiente: ###
+<!-- ### El archivo README.md debe incluir lo siguiente: ###
 
 - Un 90% de las funciones explicadas a detalle.
 - Documentación con ‘Postman’ de todos los métodos (GET, PUT, DELETE, POST).
 - Mínimo un ejemplo de la estructura de cada archivo JSON utilizado (no integrar varios “arrays” en un mismo archivo).
 - Link del deploy en Render.
-- Link al repositorio con el front-end.
+- Link al repositorio con el front-end. -->
