@@ -76,7 +76,7 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │   ├── 
     │   ├── 
     │   └── 
-    │── data/ # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
+    │── data/                               # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
     │   ├── extras/
     │   │       ├── sys-materias.json
     │   │       ├── sys-notas.json
@@ -100,6 +100,13 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │    ├──  
     │    ├── 
     │    └── 
+    │── persistence/
+    │        ├── sys-database-models/
+    │        │                       ├── sys-fake-database.model.ts
+    │        │                       └── sys-log.database.model.ts
+    │        └── a.txt
+    ├── Dockerfile
+    ├── .dockerignore
     ├── ROADMAP.md              # Hoja de ruta y division de tareas
     └── README.md               # Documentacion general
 
