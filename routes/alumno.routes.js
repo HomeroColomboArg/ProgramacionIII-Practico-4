@@ -3,7 +3,7 @@ const {
   getAlumnoAll,
   getAlumnoById,
   addAlumno,
-  modAlumno,
+  updateAlumno,
   deleteAlumno
 } = require('../controllers/alumno.controller')
 
@@ -12,7 +12,7 @@ const rutas = Router()
 rutas.get('/', getAlumnoAll)
 rutas.get('/:legajo', getAlumnoById)
 rutas.post('/', addAlumno)
-rutas.put('/:legajo', modAlumno)
+rutas.put('/:legajo', updateAlumno)
 rutas.delete('/:legajo', deleteAlumno)
 
 module.exports = rutas
