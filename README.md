@@ -112,15 +112,17 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 ## Endpoints y Documentación en Postman
 
-* **Documentación Completa (Postman):** `[Pegar link público de la Colección]`
+**Documentación Completa:** &nbsp;<a href="https://documenter.getpostman.com/view/24385288/2sBXwmRtUh"><img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" align="center" height="28"></a>
 
 ### Rutas Disponibles
 
-* `GET /alumnos`: Retorna el listado completo de todos los alumnos almacenados en el sistema. (Respuestas: 200, 500).
-* `GET /alumnos/:id`: Retorna la información de un alumno específico mediante su legajo pasado por parámetro de ruta. (Respuestas: 200, 404, 500).
-* `POST /alumnos`: Registra un nuevo alumno validando previamente que los datos enviados en el cuerpo de la petición (`req.body`) sean correctos. (Respuestas: 201, 400, 409, 500).
-* `PUT /alumnos/:id`: Actualiza las propiedades de un alumno existente sin permitir la modificación de su número de legajo. (Respuestas: 200, 404, 500).
-* `DELETE /alumnos/:id`: Elimina el registro completo de un alumno de la base de datos a partir de su número de legajo. (Respuestas: 200, 404, 500).
+| Método | Endpoint | Descripción | Respuestas HTTP |
+| :--- | :--- | :--- | :--- |
+| 🟢 `GET` | `/alumnos` | Retorna el listado completo de todos los alumnos registrados en el sistema. | `200`, `500` |
+| 🟢 `GET` | `/alumnos/:id` | Retorna la información de un alumno específico mediante su legajo. | `200`, `404`, `500` |
+| 🔵 `POST` | `/alumnos` | Registra un nuevo alumno validando previamente los datos del `req.body`. | `201`, `400`, `409`, `500` |
+| 🟠 `PUT` | `/alumnos/:id` | Actualiza las propiedades de un alumno existente (no permite modificar el legajo). | `200`, `404`, `500` |
+| 🔴 `DELETE` | `/alumnos/:id` | Elimina el registro completo de un alumno de la base de datos a partir de su legajo. | `200`, `404`, `500` |
 
 ## 👩‍💻 Funciones TS
 
