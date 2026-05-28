@@ -1,6 +1,7 @@
 # AlumnAPI
 
-Materia: Programacion III - Primer Cuatrimestre, 2do año 📚
+- Trabajo Practico N°4 
+- Materia: Programacion III - Primer Cuatrimestre, 2do año 📚
 
 ## 📖 ¿Que es AlumnAPI?
 
@@ -75,7 +76,7 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │   ├── 
     │   ├── 
     │   └── 
-    │── data/ # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
+    │── data/                               # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
     │   ├── extras/
     │   │       ├── sys-materias.json
     │   │       ├── sys-notas.json
@@ -99,23 +100,29 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │    ├──  
     │    ├── 
     │    └── 
+    │── persistence/
+    │        ├── sys-database-models/
+    │        │                       ├── sys-fake-database.model.ts
+    │        │                       └── sys-log.database.model.ts
+    │        └── a.txt
+    ├── Dockerfile
+    ├── .dockerignore
     ├── ROADMAP.md              # Hoja de ruta y division de tareas
     └── README.md               # Documentacion general
 
 ## Endpoints y Documentación en Postman
 
-Todos los endpoints fueron documentados y testeados directamente sobre la URL de producción.
-
-* **URL Base de la API (Render):** `[Pegar link del Web Service]`
-* **Documentación Completa (Postman):** `[Pegar link público de la Colección]`
+**Documentación Completa:** &nbsp;<a href="https://documenter.getpostman.com/view/24385288/2sBXwmRtUh"><img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" align="center" height="28"></a>
 
 ### Rutas Disponibles
 
-* `GET /alumnos`: Retorna el listado completo de todos los alumnos almacenados en el sistema. (Respuestas: 200, 500).
-* `GET /alumnos/:id`: Retorna la información de un alumno específico mediante su legajo pasado por parámetro de ruta. (Respuestas: 200, 404, 500).
-* `POST /alumnos`: Registra un nuevo alumno validando previamente que los datos enviados en el cuerpo de la petición (`req.body`) sean correctos. (Respuestas: 201, 400, 409, 500).
-* `PUT /alumnos/:id`: Actualiza las propiedades de un alumno existente sin permitir la modificación de su número de legajo. (Respuestas: 200, 404, 500).
-* `DELETE /alumnos/:id`: Elimina el registro completo de un alumno de la base de datos a partir de su número de legajo. (Respuestas: 200, 404, 500).
+| Método | Endpoint | Descripción | Respuestas HTTP |
+| :--- | :--- | :--- | :--- |
+| 🟢 `GET` | `/alumnos` | Retorna el listado completo de todos los alumnos registrados en el sistema. | `200`, `500` |
+| 🟢 `GET` | `/alumnos/:id` | Retorna la información de un alumno específico mediante su legajo. | `200`, `404`, `500` |
+| 🔵 `POST` | `/alumnos` | Registra un nuevo alumno validando previamente los datos del `req.body`. | `201`, `400`, `409`, `500` |
+| 🟠 `PUT` | `/alumnos/:id` | Actualiza las propiedades de un alumno existente (no permite modificar el legajo). | `200`, `404`, `500` |
+| 🔴 `DELETE` | `/alumnos/:id` | Elimina el registro completo de un alumno de la base de datos a partir de su legajo. | `200`, `404`, `500` |
 
 ## 👩‍💻 Funciones TS
 
@@ -140,17 +147,17 @@ Muestra de la estructura individual utilizada para registrar a los estudiantes d
 }
 ```
 
-## 🚀 Deploys
+## 🚀 Deploy
 | Componente | Servicio | URL |
 | :--- | :--- | :--- |
-| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio]() |
 | **API / Backend** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) | [Ver Sitio]() |
+| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio]() |
 
 
-### El archivo README.md debe incluir lo siguiente: ###
+
+<!-- ### El archivo README.md debe incluir lo siguiente: ###
 
 - Un 90% de las funciones explicadas a detalle.
-- Documentación con ‘Postman’ de todos los métodos (GET, PUT, DELETE, POST).
 - Mínimo un ejemplo de la estructura de cada archivo JSON utilizado (no integrar varios “arrays” en un mismo archivo).
 - Link del deploy en Render.
-- Link al repositorio con el front-end.
+- Link al repositorio con el front-end. -->
