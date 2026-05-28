@@ -56,12 +56,12 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 | Responsable | Archivos y Carpetas Principales | Funcionalidad / Módulo |
 | :--- | :--- | :--- |
-| **Martin Alcaraz** |  | Deploy de la API |
-| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`  | Documentación técnica |
-| **Matias Oviedo** |  | |
-| **Nahuel Cappa** | | |
-| **Homero Colombo** | |  |
-| **Nicolas Espulef** ||  |
+| **Martin Alcaraz** |  | Deploy de la API en Render |
+| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`, `.env`  | Documentación técnica, instalacion y configuracion de dependencias con pnpm, creacion de coleccion y documentación en Postman |
+| **Matias Oviedo** | `alumno.controller.js`, `alumno.routes.js` | Endpoints |
+| **Nahuel Cappa** | | Frontend |
+| **Homero Colombo** | | Creación del repositorio |
+| **Nicolas Espulef** |`alumno.model.ts`,`persona.model.ts` | Modelos |
 
 ## 📂 Estructura del Proyecto
     ProgramacionIII-Practico-4/  
