@@ -56,12 +56,12 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 | Responsable | Archivos y Carpetas Principales | Funcionalidad / Módulo |
 | :--- | :--- | :--- |
-| **Martin Alcaraz** |  | Deploy de la API |
-| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`  | Documentación técnica |
-| **Matias Oviedo** |  | |
+| **Martin Alcaraz** |  | Deploy de la API en Render |
+| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`, `.env`  | Documentación técnica, instalacion y configuracion de dependencias con pnpm |
+| **Matias Oviedo** | `alumno.controller.js`, `alumno.routes.js` | Endpoints |
 | **Nahuel Cappa** | | |
-| **Homero Colombo** | |  |
-| **Nicolas Espulef** ||  |
+| **Homero Colombo** | | Creación del repositorio |
+| **Nicolas Espulef** |`alumno.model.ts`,`persona.model.ts` | Modelos |
 
 ## 📂 Estructura del Proyecto
     ProgramacionIII-Practico-4/  
@@ -131,21 +131,27 @@ Para cumplir con los estándares requeridos, detallamos el funcionamiento de los
 * `getAllAlumnos()`: Abre el archivo JSON correspondiente de manera asíncrona, lo parsea y retorna el array de objetos. En caso de error de lectura, captura la excepción para evitar la caída del servidor.
 * `validarAlumno()`: Utiliza las propiedades de la clase modelo para verificar que los tipos de datos recibidos (string, boolean, number) en la petición sean correctos antes de proceder con la inserción o modificación.
 * `buscarPorLegajo(id)`: Itera sobre el array parseado buscando una coincidencia con el legajo provisto; si no encuentra el dato, arroja un estado HTTP 404 de manera controlada.
-*(Nota: Agreguen cualquier otra función clave que hayan desarrollado en sus controladores para completar el 90%)*
 
 ## ⚙️ Estructura de Datos (JSON)
 
-Muestra de la estructura individual utilizada para registrar a los estudiantes dentro de la colección principal en nuestro archivo `alumnos.json`:
+Los datos de la aplicación se simulan utilizando archivos JSON estáticos ubicados en la carpeta **data/**. A continuación se muestra la estructura de cada uno.
+
+### 1. Alumnos (`alumnos.json`) 
+Almacena la información de los alumnos, incluyendo su legajo, nombre, apellido, email, fecha de alta en la universidad, ultima modificación de los datos y el estado academico del alumno.
 
 ```json
-{
-  "legajo": 21317,
-  "nombre": "Federico",
-  "apellido": "Heinrich",
-  "edad": 26,
-  "activo": true
-}
+  {
+    "legajo": 10025,
+    "nombre": "Tomás",
+    "apellido": "Méndez",
+    "email": "t.mendez@facultad.edu.ar",
+    "fechaAlta": "2026-05-14",
+    "modificacion": "2026-05-14",
+    "isActive": true
+  }
 ```
+
+
 
 ## 🚀 Deploy
 | Componente | Servicio | URL |
@@ -158,6 +164,5 @@ Muestra de la estructura individual utilizada para registrar a los estudiantes d
 <!-- ### El archivo README.md debe incluir lo siguiente: ###
 
 - Un 90% de las funciones explicadas a detalle.
-- Mínimo un ejemplo de la estructura de cada archivo JSON utilizado (no integrar varios “arrays” en un mismo archivo).
 - Link del deploy en Render.
 - Link al repositorio con el front-end. -->
