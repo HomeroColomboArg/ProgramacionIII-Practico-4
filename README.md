@@ -151,12 +151,13 @@ Muestra de la estructura individual utilizada para registrar a los estudiantes d
 | Componente | Servicio | URL |
 | :--- | :--- | :--- |
 | **API / Backend** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) | [Ver Sitio]() |
+| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio]() |
+
 
 
 <!-- ### El archivo README.md debe incluir lo siguiente: ###
 
 - Un 90% de las funciones explicadas a detalle.
-- Documentación con ‘Postman’ de todos los métodos (GET, PUT, DELETE, POST).
 - Mínimo un ejemplo de la estructura de cada archivo JSON utilizado (no integrar varios “arrays” en un mismo archivo).
 - Link del deploy en Render.
 - Link al repositorio con el front-end. -->
