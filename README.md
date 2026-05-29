@@ -56,12 +56,12 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 | Responsable | Archivos y Carpetas Principales | Funcionalidad / Módulo |
 | :--- | :--- | :--- |
-| **Martin Alcaraz** |  | Deploy de la API en Render |
+| **Martin Alcaraz** | `profesor.controller.js`,`profesor.routes.js` | Gestión de profesores (CRUD y Endpoints) |
 | **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`, `.env`  | Documentación técnica, instalacion y configuracion de dependencias con pnpm |
-| **Matias Oviedo** | `alumno.controller.js`, `alumno.routes.js` | Endpoints |
-| **Nahuel Cappa** | | |
-| **Homero Colombo** | | Creación del repositorio |
-| **Nicolas Espulef** |`alumno.model.ts`,`persona.model.ts` | Modelos |
+| **Matias Oviedo** | `alumno.controller.js`, `alumno.routes.js` | Gestión de alumnos (CRUD y Endpoints) |
+| **Nahuel Cappa** | `nota.routes.js`,`nota.controller.js`| Gestión de notas y calificaciones (CRUD y Endpoints) |
+| **Homero Colombo** |`materia.routes.js`,`materia.controller.js` | Creación del repositorio y Gestión de Materias (CRUD y Endpoints) |
+| **Nicolas Espulef** |`alumno.model.ts`,`persona.model.ts`,`profesor.model.ts`, `nota.model.ts`, `clase.model.ts` | Modelado de los objetos del sistema y validaciones con Typescript |
 
 ## 📂 Estructura del Proyecto
     ProgramacionIII-Practico-4/  
