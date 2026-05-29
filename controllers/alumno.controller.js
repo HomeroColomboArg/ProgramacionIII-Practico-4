@@ -48,8 +48,14 @@ const addAlumno = async (req, res) => {
 
     let alumnoNew
     try {
-      alumnoNew = new AlumnoModel()
-      // Agregar atributos del req.body
+      alumnoNew = new AlumnoModel(
+        req.body.legajo,
+        req.body.nombre,
+        req.body.apellido,
+        req.body.fechaAlta,
+        req.body.modificacion,
+        req.body.isActive
+      )
     } catch (error) {
       console.log(error)
       return res
@@ -81,8 +87,14 @@ const updateAlumno = async (req, res) => {
 
     let alumnoNew
     try {
-      alumnoNew = new AlumnoModel()
-      // Agregar atributos del req.body
+      alumnoNew = new AlumnoModel(
+        req.body.legajo,
+        req.body.nombre,
+        req.body.apellido,
+        req.body.fechaAlta,
+        req.body.modificacion,
+        req.body.isActive
+      )
     } catch (error) {
       console.log(error)
       return res
