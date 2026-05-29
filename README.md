@@ -1,6 +1,7 @@
 # AlumnAPI
 
-Materia: Programacion III - Primer Cuatrimestre, 2do año 📚
+- Trabajo Practico N°4 
+- Materia: Programacion III - Primer Cuatrimestre, 2do año 📚
 
 ## 📖 ¿Que es AlumnAPI?
 
@@ -55,12 +56,12 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 | Responsable | Archivos y Carpetas Principales | Funcionalidad / Módulo |
 | :--- | :--- | :--- |
-| **Martin Alcaraz** |  | Deploy de la API |
-| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`  | Documentación técnica |
-| **Matias Oviedo** |  | |
+| **Martin Alcaraz** |  | Deploy de la API en Render |
+| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`, `.env`  | Documentación técnica, instalacion y configuracion de dependencias con pnpm |
+| **Matias Oviedo** | `alumno.controller.js`, `alumno.routes.js` | Endpoints |
 | **Nahuel Cappa** | | |
-| **Homero Colombo** | |  |
-| **Nicolas Espulef** ||  |
+| **Homero Colombo** | | Creación del repositorio |
+| **Nicolas Espulef** |`alumno.model.ts`,`persona.model.ts` | Modelos |
 
 ## 📂 Estructura del Proyecto
     ProgramacionIII-Practico-4/  
@@ -75,7 +76,7 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │   ├── 
     │   ├── 
     │   └── 
-    │── data/ # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
+    │── data/                               # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
     │   ├── extras/
     │   │       ├── sys-materias.json
     │   │       ├── sys-notas.json
@@ -99,23 +100,29 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │    ├──  
     │    ├── 
     │    └── 
+    │── persistence/
+    │        ├── sys-database-models/
+    │        │                       ├── sys-fake-database.model.ts
+    │        │                       └── sys-log.database.model.ts
+    │        └── a.txt
+    ├── Dockerfile
+    ├── .dockerignore
     ├── ROADMAP.md              # Hoja de ruta y division de tareas
     └── README.md               # Documentacion general
 
 ## Endpoints y Documentación en Postman
 
-Todos los endpoints fueron documentados y testeados directamente sobre la URL de producción.
-
-* **URL Base de la API (Render):** `[Pegar link del Web Service]`
-* **Documentación Completa (Postman):** `[Pegar link público de la Colección]`
+**Documentación Completa:** &nbsp;<a href="https://documenter.getpostman.com/view/24385288/2sBXwmRtUh"><img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" align="center" height="28"></a>
 
 ### Rutas Disponibles
 
-* `GET /alumnos`: Retorna el listado completo de todos los alumnos almacenados en el sistema. (Respuestas: 200, 500).
-* `GET /alumnos/:id`: Retorna la información de un alumno específico mediante su legajo pasado por parámetro de ruta. (Respuestas: 200, 404, 500).
-* `POST /alumnos`: Registra un nuevo alumno validando previamente que los datos enviados en el cuerpo de la petición (`req.body`) sean correctos. (Respuestas: 201, 400, 409, 500).
-* `PUT /alumnos/:id`: Actualiza las propiedades de un alumno existente sin permitir la modificación de su número de legajo. (Respuestas: 200, 404, 500).
-* `DELETE /alumnos/:id`: Elimina el registro completo de un alumno de la base de datos a partir de su número de legajo. (Respuestas: 200, 404, 500).
+| Método | Endpoint | Descripción | Respuestas HTTP |
+| :--- | :--- | :--- | :--- |
+| 🟢 `GET` | `/alumnos` | Retorna el listado completo de todos los alumnos registrados en el sistema. | `200`, `500` |
+| 🟢 `GET` | `/alumnos/:id` | Retorna la información de un alumno específico mediante su legajo. | `200`, `404`, `500` |
+| 🔵 `POST` | `/alumnos` | Registra un nuevo alumno validando previamente los datos del `req.body`. | `201`, `400`, `409`, `500` |
+| 🟠 `PUT` | `/alumnos/:id` | Actualiza las propiedades de un alumno existente (no permite modificar el legajo). | `200`, `404`, `500` |
+| 🔴 `DELETE` | `/alumnos/:id` | Elimina el registro completo de un alumno de la base de datos a partir de su legajo. | `200`, `404`, `500` |
 
 ## 👩‍💻 Funciones TS
 
@@ -124,33 +131,38 @@ Para cumplir con los estándares requeridos, detallamos el funcionamiento de los
 * `getAllAlumnos()`: Abre el archivo JSON correspondiente de manera asíncrona, lo parsea y retorna el array de objetos. En caso de error de lectura, captura la excepción para evitar la caída del servidor.
 * `validarAlumno()`: Utiliza las propiedades de la clase modelo para verificar que los tipos de datos recibidos (string, boolean, number) en la petición sean correctos antes de proceder con la inserción o modificación.
 * `buscarPorLegajo(id)`: Itera sobre el array parseado buscando una coincidencia con el legajo provisto; si no encuentra el dato, arroja un estado HTTP 404 de manera controlada.
-*(Nota: Agreguen cualquier otra función clave que hayan desarrollado en sus controladores para completar el 90%)*
 
 ## ⚙️ Estructura de Datos (JSON)
 
-Muestra de la estructura individual utilizada para registrar a los estudiantes dentro de la colección principal en nuestro archivo `alumnos.json`:
+Los datos de la aplicación se simulan utilizando archivos JSON estáticos ubicados en la carpeta **data/**. A continuación se muestra la estructura de cada uno.
+
+### 1. Alumnos (`alumnos.json`) 
+Almacena la información de los alumnos, incluyendo su legajo, nombre, apellido, email, fecha de alta en la universidad, ultima modificación de los datos y el estado academico del alumno.
 
 ```json
-{
-  "legajo": 21317,
-  "nombre": "Federico",
-  "apellido": "Heinrich",
-  "edad": 26,
-  "activo": true
-}
+  {
+    "legajo": 10025,
+    "nombre": "Tomás",
+    "apellido": "Méndez",
+    "email": "t.mendez@facultad.edu.ar",
+    "fechaAlta": "2026-05-14",
+    "modificacion": "2026-05-14",
+    "isActive": true
+  }
 ```
 
-## 🚀 Deploys
+
+
+## 🚀 Deploy
 | Componente | Servicio | URL |
 | :--- | :--- | :--- |
-| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio]() |
 | **API / Backend** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) | [Ver Sitio]() |
+| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio]() |
 
 
-### El archivo README.md debe incluir lo siguiente: ###
+
+<!-- ### El archivo README.md debe incluir lo siguiente: ###
 
 - Un 90% de las funciones explicadas a detalle.
-- Documentación con ‘Postman’ de todos los métodos (GET, PUT, DELETE, POST).
-- Mínimo un ejemplo de la estructura de cada archivo JSON utilizado (no integrar varios “arrays” en un mismo archivo).
 - Link del deploy en Render.
-- Link al repositorio con el front-end.
+- Link al repositorio con el front-end. -->
