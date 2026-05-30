@@ -124,13 +124,21 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 | 🟠 `PUT` | `/alumnos/:id` | Actualiza las propiedades de un alumno existente (no permite modificar el legajo). | `200`, `404`, `500` |
 | 🔴 `DELETE` | `/alumnos/:id` | Elimina el registro completo de un alumno de la base de datos a partir de su legajo. | `200`, `404`, `500` |
 
-## 👩‍💻 Funciones TS
+## 👩‍💻 Funciones
 
-Para cumplir con los estándares requeridos, detallamos el funcionamiento de los métodos principales. Todos utilizan sintaxis asíncrona (`async/await`) y bloques `try/catch` para manejar fallos inesperados.
+Detallamos el funcionamiento de los métodos principales. Todos utilizan sintaxis asíncrona (`async/await`) y bloques `try/catch` para manejar fallos inesperados.
+
+### Funciones JS (Controllers)
 
 * `getAllAlumnos()`: Abre el archivo JSON correspondiente de manera asíncrona, lo parsea y retorna el array de objetos. En caso de error de lectura, captura la excepción para evitar la caída del servidor.
+
 * `validarAlumno()`: Utiliza las propiedades de la clase modelo para verificar que los tipos de datos recibidos (string, boolean, number) en la petición sean correctos antes de proceder con la inserción o modificación.
+
 * `buscarPorLegajo(id)`: Itera sobre el array parseado buscando una coincidencia con el legajo provisto; si no encuentra el dato, arroja un estado HTTP 404 de manera controlada.
+
+### Funciones TS (Models)
+
+*
 
 ## ⚙️ Estructura de Datos (JSON)
 
@@ -150,8 +158,6 @@ Almacena la información de los alumnos, incluyendo su legajo, nombre, apellido,
     "isActive": true
   }
 ```
-
-
 
 ## 🚀 Deploy
 | Componente | Servicio | URL |
