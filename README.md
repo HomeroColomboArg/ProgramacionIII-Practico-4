@@ -57,7 +57,7 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 | Responsable | Archivos y Carpetas Principales | Funcionalidad / Módulo |
 | :--- | :--- | :--- |
 | **Martin Alcaraz** | `profesor.controller.js`,`profesor.routes.js` | Gestión de profesores (CRUD y Endpoints) |
-| **Federico Heinrich** | `README.md`, `ROADMAP.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`, `.env`  | Documentación técnica, instalacion y configuracion de dependencias con pnpm |
+| **Federico Heinrich** | `README.md`, `Dockerfile`, `.dockerignore`, `.gitignore`, `package.json`,`package-lock.json`,`pnpm-lock.yaml`, `.env`  | Documentación técnica, instalacion y configuracion de dependencias con pnpm |
 | **Matias Oviedo** | `alumno.controller.js`, `alumno.routes.js` | Gestión de alumnos (CRUD y Endpoints) |
 | **Nahuel Cappa** | `nota.routes.js`,`nota.controller.js`| Gestión de notas y calificaciones (CRUD y Endpoints) |
 | **Homero Colombo** |`materia.routes.js`,`materia.controller.js` | Creación del repositorio y Gestión de Materias (CRUD y Endpoints) |
