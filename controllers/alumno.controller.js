@@ -46,15 +46,31 @@ const addAlumno = async (req, res) => {
     const data = await fs.readFile('../data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
-    // Agregar validacion de estructura para el codigo de error 400
+    let alumnoNew
+    try {
+      alumnoNew = new AlumnoModel(
+        req.body.legajo,
+        req.body.nombre,
+        req.body.apellido,
+        req.body.fechaAlta,
+        req.body.modificacion,
+        req.body.isActive
+      )
+    } catch (error) {
+      console.log(error)
+      return res
+        .status(400)
+        .json({ msg: 'Los datos enviados no fueron validos' })
+    }
 
-    if (alumnos.some((a) => a.legajo === req.body.legajo)) {
+    if (alumnos.some((a) => a.legajo === alumnoNew.legajo)) {
       return res.status(409).json({
-        msg: `Un alumno ya fue registrado con el legajo ${req.body.legajo}`
+        msg: `Un alumno ya fue registrado con el legajo ${alumnoNew.legajo}`
       })
     }
 
-    // Cargar req.body en json
+    alumnos.push(alumnoNew)
+    fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
     return res.status(201).json({ msg: 'Alumno agregado exitosamente' })
   } catch (error) {
     console.log(error)
@@ -69,7 +85,22 @@ const updateAlumno = async (req, res) => {
     const data = await fs.readFile('../data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
-    // Agregar validacion de estructura para el codigo de error 400
+    let alumnoNew
+    try {
+      alumnoNew = new AlumnoModel(
+        req.body.legajo,
+        req.body.nombre,
+        req.body.apellido,
+        req.body.fechaAlta,
+        req.body.modificacion,
+        req.body.isActive
+      )
+    } catch (error) {
+      console.log(error)
+      return res
+        .status(400)
+        .json({ msg: 'Los datos enviados no fueron validos' })
+    }
 
     const { legajo } = req.params
 
@@ -83,7 +114,9 @@ const updateAlumno = async (req, res) => {
         .json({ msg: `No existe el alumno con el legajo ${legajo}` })
     }
 
-    // Modificar json segun alumno y req.body
+    alumnos = alumnos.filter((item) => item.id !== alumno.id)
+    alumnos.push(alumnoNew)
+    fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
     return res.status(200).json({ msg: 'Alumno actualizado exitosamente' })
   } catch (error) {
     return res
@@ -97,13 +130,20 @@ const deleteAlumno = async (req, res) => {
     const data = await fs.readFile('../data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
-    if (!alumnos.some((a) => a.legajo === req.params)) {
+    const { legajo } = req.params
+
+    const alumno = alumnos.find(
+      (a) => a.legajo /* .toString() */ === Number(legajo)
+    )
+
+    if (!alumno) {
       return res
         .status(404)
-        .json({ msg: `No existe ningun alumno con el legajo ${req.params}` })
+        .json({ msg: `No existe el alumno con el legajo ${legajo}` })
     }
 
-    // Borrar alumno segun legajo
+    alumnos = alumnos.filter((item) => item.id !== alumno.id)
+    fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
     return res.status(200).json({ msg: 'Alumno borrado exitosamente' })
   } catch (error) {
     return res
