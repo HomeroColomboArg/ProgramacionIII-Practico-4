@@ -65,8 +65,7 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 ## 📂 Estructura del Proyecto
     ProgramacionIII-Practico-4/  
-    │── app.js                             # Archivo principal que inicializa la aplicación.
-    ├── package-lock.json                    
+    │── app.js                             # Archivo principal que inicializa la aplicación.                  
     ├── package.json
     ├── pnpm-lock.yaml                           
     │── .gitignore                         # Archivos y carpetas ignorados por el control de versiones (incluye `node_modules`).
