@@ -23,7 +23,7 @@ const getAlumnoById = async (req, res) => {
     const { legajo } = req.params
 
     const alumno = alumnos.find(
-      (a) => a.legajo /* .toString() */ === Number(legajo)
+      (a) => a.legajo === Number(legajo)
     )
 
     if (!alumno) {
@@ -70,7 +70,7 @@ const addAlumno = async (req, res) => {
     }
 
     alumnos.push(alumnoNew)
-    fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
+    await fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
     return res.status(201).json({ msg: 'Alumno agregado exitosamente' })
   } catch (error) {
     console.log(error)
@@ -83,7 +83,7 @@ const addAlumno = async (req, res) => {
 const updateAlumno = async (req, res) => {
   try {
     const data = await fs.readFile('../data/alumnos.json', 'utf8')
-    const alumnos = JSON.parse(data)
+    let alumnos = JSON.parse(data)
 
     let alumnoNew
     try {
@@ -105,7 +105,7 @@ const updateAlumno = async (req, res) => {
     const { legajo } = req.params
 
     const alumno = alumnos.find(
-      (a) => a.legajo /* .toString() */ === Number(legajo)
+      (a) => a.legajo === Number(legajo)
     )
 
     if (!alumno) {
@@ -114,21 +114,21 @@ const updateAlumno = async (req, res) => {
         .json({ msg: `No existe el alumno con el legajo ${legajo}` })
     }
 
-    alumnos = alumnos.filter((item) => item.id !== alumno.id)
+    alumnos = alumnos.filter((item) => item.legajo !== alumno.legajo)
     alumnos.push(alumnoNew)
-    fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
+    await fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
     return res.status(200).json({ msg: 'Alumno actualizado exitosamente' })
   } catch (error) {
     return res
       .status(500)
-      .json({ msg: 'Ha habido un error al agregar al alumno' })
+      .json({ msg: 'Ha habido un error al actualizar el alumno' })
   }
 }
 
 const deleteAlumno = async (req, res) => {
   try {
     const data = await fs.readFile('../data/alumnos.json', 'utf8')
-    const alumnos = JSON.parse(data)
+    let alumnos = JSON.parse(data)
 
     const { legajo } = req.params
 
@@ -142,8 +142,8 @@ const deleteAlumno = async (req, res) => {
         .json({ msg: `No existe el alumno con el legajo ${legajo}` })
     }
 
-    alumnos = alumnos.filter((item) => item.id !== alumno.id)
-    fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
+    alumnos = alumnos.filter((item) => item.legajo !== alumno.legajo)
+    await fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
     return res.status(200).json({ msg: 'Alumno borrado exitosamente' })
   } catch (error) {
     return res
