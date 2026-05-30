@@ -68,8 +68,7 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │── app.js                             # Archivo principal que inicializa la aplicación.
     ├── package-lock.json                    
     ├── package.json
-    ├── pnpm-lock.yaml
-    ├── settings.json                           
+    ├── pnpm-lock.yaml                           
     │── .gitignore                         # Archivos y carpetas ignorados por el control de versiones (incluye `node_modules`).
     │── controllers/                       # Lógica de negocio y manejo de las peticiones respuestas.
     │   ├── alumnoController.js
@@ -77,29 +76,23 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │   ├── 
     │   └── 
     │── data/                               # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
-    │   ├── extras/
-    │   │       ├── sys-materias.json
-    │   │       ├── sys-notas.json
-    │   │       └── sys-profesores.json
+    │   ├── sys-materias.json
+    │   ├── sys-notas.json
+    │   ├── sys-profesores.json
     │   └── alumnos.json
     │── models/                            # Clases en TypeScript utilizadas para instanciar y validar los objetos (ej. `alumno.model.ts`).
-    │   ├── extras/
-    │   │         ├── clase.model.ts
-    │   │         ├── nota.model.ts
-    │   │         └── profesor.model.ts
+    │   ├── clase.model.ts
+    │   ├── nota.model.ts
+    │   ├── profesor.model.ts   
     │   ├── alumno.model.ts
     │   └── persona.model.ts
     │── core/
     │   └── server.js                       # Configuración y levantamiento del servidor HTTP.
     │── routes/                             # Definición de los endpoints de la API (alumnos).
-    │    ├── extras/
-    │    │       ├── materia.routes.js
-    │    │       ├── nota.routes.js
-    │    │       └── profesor.routes.js
-    │    ├── alumno.routes.js
-    │    ├──  
-    │    ├── 
-    │    └── 
+    │    ├── materia.routes.js
+    │    ├── nota.routes.js       
+    │    ├── profesor.routes.js       
+    │    └── alumno.routes.js
     │── persistence/
     │        ├── sys-database-models/
     │        │                       ├── sys-fake-database.model.ts
@@ -107,7 +100,6 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │        └── a.txt
     ├── Dockerfile
     ├── .dockerignore
-    ├── ROADMAP.md              # Hoja de ruta y division de tareas
     └── README.md               # Documentacion general
 
 ## Endpoints y Documentación en Postman
