@@ -130,14 +130,6 @@ Detallamos el funcionamiento de los métodos principales. Todos utilizan sintaxi
 
 ### Persona
 
-#### Funciones JS (Controllers)
-
-*
-
-*
-
-*
-
 #### Funciones TS (Models)
 
 * `getNombre()`: Retorna el nombre de la persona almacenado en la instancia de la clase.
