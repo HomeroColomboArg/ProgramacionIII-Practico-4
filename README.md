@@ -128,17 +128,67 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 
 Detallamos el funcionamiento de los métodos principales. Todos utilizan sintaxis asíncrona (`async/await`) y bloques `try/catch` para manejar fallos inesperados.
 
-### Funciones JS (Controllers)
+### Persona
 
-* `getAllAlumnos()`: Abre el archivo JSON correspondiente de manera asíncrona, lo parsea y retorna el array de objetos. En caso de error de lectura, captura la excepción para evitar la caída del servidor.
+#### Funciones JS (Controllers)
+
+*
+
+*
+
+*
+
+#### Funciones TS (Models)
+
+* `getNombre()`: Retorna el nombre de la persona almacenado en la instancia de la clase.
+
+* `getApellido()`: Retorna el apellido de la persona almacenado en la instancia de la clase.
+
+* `getNombreCompleto()`: Devuelve una cadena de texto combinando el nombre y el apellido de la persona (ej. "Tomás Méndez"), ideal para formatear visualizaciones en el sistema.
+
+* `getEmail()`: Retorna la dirección de correo electrónico validada de la persona.
+
+* `getAllAtributes()`: Devuelve un objeto literal con todos los atributos base de la persona (nombre, apellido y email), facilitando la estructuración de datos antes de su persistencia o envío.
+
+* `setApellido(apellido: string)`: Asigna de manera segura un nuevo apellido a la instancia de la persona.
+
+* `setNombre(nombre: string)`: Asigna de manera segura un nuevo nombre a la instancia de la persona.
+
+* `setEmail(email: string)`: Modifica el correo electrónico de la persona tras verificar que cumpla con el formato correspondiente.
+
+### Alumno
+
+#### Funciones JS (Controllers)
+
+* `getAlumnoAll()`: Abre el archivo JSON correspondiente de manera asíncrona, lo parsea y retorna el array de objetos. En caso de error de lectura, captura la excepción para evitar la caída del servidor.
+
+* `getAlumnoById()`:Itera sobre el array parseado buscando una coincidencia con el legajo provisto; si no encuentra el dato, arroja un estado HTTP 404 de manera controlada.
+
+* `addAlumno()`: Recibe las propiedades desde el `req.body`, realiza la validación mediante el modelo e inserta el nuevo estudiante en el archivo JSON, retornando un estado 201 en caso de éxito o un 409 si el legajo ya existe.
+
+* `updateAlumno()`: Modifica los atributos de un alumno existente basándose en su legajo (`req.params`), protegiendo de forma estricta que el número de legajo original no sea alterado.
+
+* `deleteAlumno()`: Remueve por completo al estudiante del array de datos correspondiente mediante su legajo y vuelve a persistir el archivo JSON actualizado de forma asíncrona.
 
 * `validarAlumno()`: Utiliza las propiedades de la clase modelo para verificar que los tipos de datos recibidos (string, boolean, number) en la petición sean correctos antes de proceder con la inserción o modificación.
 
-* `buscarPorLegajo(id)`: Itera sobre el array parseado buscando una coincidencia con el legajo provisto; si no encuentra el dato, arroja un estado HTTP 404 de manera controlada.
+#### Funciones TS (Models)
 
-### Funciones TS (Models)
+* `getLegajo()`: Retorna el número de legajo único asignado al alumno.
 
-*
+* `getFechaAlta()`: Devuelve la fecha exacta en la que el estudiante fue registrado en el sistema.
+
+* `getModificacion()`: Retorna la marca de tiempo de la última actualización realizada sobre los datos del alumno.
+
+* `getIsActive()`: Devuelve un booleano que indica el estado académico actual (activo/inactivo) del estudiante.
+
+* `setFechaAlta(fecha: string)`: Establece la fecha de alta inicial del registro del alumno.
+
+* `setModificacion(fecha: string)`: Actualiza de forma dinámica la fecha de última modificación cada vez que se alteran las propiedades del objeto.
+
+* `setIsActivate(status: boolean)`: Permite cambiar el estado de actividad del alumno para gestionar bajas lógicas en el sistema.
+
+* `getAllAtributes()`: Combina los atributos heredados de la clase `Persona` junto con los campos específicos de `Alumno` (legajo, fechas y estado) para retornar un objeto completo estructurado.
 
 ## ⚙️ Estructura de Datos (JSON)
 
@@ -157,6 +207,43 @@ Almacena la información de los alumnos, incluyendo su legajo, nombre, apellido,
     "modificacion": "2026-05-14",
     "isActive": true
   }
+```
+
+### 2. Profesores (`sys-profesores.json`)
+Almacena la información del cuerpo docente, incluyendo su identificador, datos personales y especialidad académica.
+
+```json
+{
+  "idProfesor": 401,
+  "nombre": "Gustavo",
+  "apellido": "Branchscelli",
+  "email": "g.branch@facultad.edu.ar",
+  "materia": "Programación Orientada a Objetos"
+}
+```
+
+### 3. Materias (sys-materias.json)
+Contiene el registro de las asignaturas dictadas en la tecnicatura con sus respectivas cargas horarias.
+
+```json
+{
+  "idMateria": 302,
+  "nombre": "Programación III",
+  "cuatrimestre": 1,
+}
+```
+
+### 4. Notas (sys-notas.json)
+Asocia las calificaciones finales u parciales obtenidas por los alumnos en una determinada materia.
+
+```json
+{
+  "idNota": 9001,
+  "legajoAlumno": 10025,
+  "idMateria": 302,
+  "nota": 8.5,
+  "fecha": "03-04-24"
+}
 ```
 
 ## 🚀 Deploy
