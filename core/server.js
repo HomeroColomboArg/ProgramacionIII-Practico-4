@@ -12,6 +12,8 @@ class Server {
 
   middleware () {
     this.app.use(cors())
+    // Fundamental para que Express entienda los JSON que llegan por POST y PUT
+    this.app.use(express.json())
   }
 
   rutas () {
@@ -22,12 +24,8 @@ class Server {
     this.app.use('/profesores', require('../routes/extra/profesor.routes'))
     */
 
-    // manejo de errores
+    // Manejo de errores
     this.app.use((req, res, next) => {
-      return res.status(400).json({ msg: 'Error.' })
-    })
-    this.app.use((err, req, res, next) => {
-      console.error(err.stack)
       return res.status(404).json({ msg: 'Error. Pagina no encontrada' })
     })
     this.app.use((err, req, res, next) => {
