@@ -1,175 +1,175 @@
 [
   {
-    "id": 1,
-    "legajo": 10001,
+    "idNota": 1,
+    "legajoAlumno": 10001,
     "idMateria": "MAT101",
     "nota": 9,
     "fecha": "03-04-24"
   },
   {
-    "id": 2,
-    "legajo": 10001,
+    "idNota": 2,
+    "legajoAlumno": 10001,
     "idMateria": "PROG1",
     "nota": 8,
     "fecha": "01-07-24"
   },
   {
-    "id": 3,
-    "legajo": 10002,
+    "idNota": 3,
+    "legajoAlumno": 10002,
     "idMateria": "MAT101",
     "nota": 10,
     "fecha": "03-04-24"
   },
   {
-    "id": 4,
-    "legajo": 10002,
+    "idNota": 4,
+    "legajoAlumno": 10002,
     "idMateria": "PROG1",
     "nota": 8,
     "fecha": "01-07-24"
   },
   {
-    "id": 5,
-    "legajo": 10003,
+    "idNota": 5,
+    "legajoAlumno": 10003,
     "idMateria": "MAT101",
     "nota": 4,
     "fecha": "03-04-24"
   },
   {
-    "id": 6,
-    "legajo": 10004,
+    "idNota": 6,
+    "legajoAlumno": 10004,
     "idMateria": "SIST1",
     "nota": 7,
     "fecha": "15-06-24"
   },
   {
-    "id": 7,
-    "legajo": 10005,
+    "idNota": 7,
+    "legajoAlumno": 10005,
     "idMateria": "LABO1",
     "nota": 8,
     "fecha": "20-06-24"
   },
   {
-    "id": 8,
-    "legajo": 10006,
+    "idNota": 8,
+    "legajoAlumno": 10006,
     "idMateria": "MAT101",
     "nota": 6,
     "fecha": "03-04-24"
   },
   {
-    "id": 9,
-    "legajo": 10007,
+    "idNota": 9,
+    "legajoAlumno": 10007,
     "idMateria": "ING1",
     "nota": 5,
     "fecha": "10-07-24"
   },
   {
-    "id": 10,
-    "legajo": 10008,
+    "idNota": 10,
+    "legajoAlumno": 10008,
     "idMateria": "PROG1",
     "nota": 9,
     "fecha": "01-07-24"
   },
   {
-    "id": 11,
-    "legajo": 10009,
+    "idNota": 11,
+    "legajoAlumno": 10009,
     "idMateria": "SIST1",
     "nota": 8,
     "fecha": "15-06-24"
   },
   {
-    "id": 12,
-    "legajo": 10010,
+    "idNota": 12,
+    "legajoAlumno": 10010,
     "idMateria": "MAT101",
     "nota": 7,
     "fecha": "03-04-24"
   },
   {
-    "id": 13,
-    "legajo": 10011,
+    "idNota": 13,
+    "legajoAlumno": 10011,
     "idMateria": "LABO1",
     "nota": 2,
     "fecha": "20-06-24"
   },
   {
-    "id": 14,
-    "legajo": 10012,
+    "idNota": 14,
+    "legajoAlumno": 10012,
     "idMateria": "ING1",
     "nota": 9,
     "fecha": "10-07-24"
   },
   {
-    "id": 15,
-    "legajo": 10013,
+    "idNota": 15,
+    "legajoAlumno": 10013,
     "idMateria": "PROG1",
     "nota": 7,
     "fecha": "01-07-24"
   },
   {
-    "id": 16,
-    "legajo": 10014,
+    "idNota": 16,
+    "legajoAlumno": 10014,
     "idMateria": "SIST1",
     "nota": 6,
     "fecha": "15-06-24"
   },
   {
-    "id": 17,
-    "legajo": 10015,
+    "idNota": 17,
+    "legajoAlumno": 10015,
     "idMateria": "MAT101",
     "nota": 3,
     "fecha": "03-04-24"
   },
   {
-    "id": 18,
-    "legajo": 10016,
+    "idNota": 18,
+    "legajoAlumno": 10016,
     "idMateria": "LABO1",
     "nota": 10,
     "fecha": "20-06-24"
   },
   {
-    "id": 19,
-    "legajo": 10017,
+    "idNota": 19,
+    "legajoAlumno": 10017,
     "idMateria": "ING1",
     "nota": 8,
     "fecha": "10-07-24"
   },
   {
-    "id": 20,
-    "legajo": 10018,
+    "idNota": 20,
+    "legajoAlumno": 10018,
     "idMateria": "PROG1",
     "nota": 7,
     "fecha": "01-07-24"
   },
   {
-    "id": 21,
-    "legajo": 10019,
+    "idNota": 21,
+    "legajoAlumno": 10019,
     "idMateria": "SIST1",
     "nota": 9,
     "fecha": "15-06-24"
   },
   {
-    "id": 22,
-    "legajo": 10020,
+    "idNota": 22,
+    "legajoAlumno": 10020,
     "idMateria": "MAT101",
     "nota": 5,
     "fecha": "03-04-24"
   },
   {
-    "id": 23,
-    "legajo": 10021,
+    "idNota": 23,
+    "legajoAlumno": 10021,
     "idMateria": "LABO1",
     "nota": 8,
     "fecha": "20-06-24"
   },
   {
-    "id": 24,
-    "legajo": 10022,
+    "idNota": 24,
+    "legajoAlumno": 10022,
     "idMateria": "ING1",
     "nota": 8,
     "fecha": "10-07-24"
   },
   {
-    "id": 25,
-    "legajo": 10023,
+    "idNota": 25,
+    "legajoAlumno": 10023,
     "idMateria": "PROG1",
     "nota": 10,
     "fecha": "01-07-24"

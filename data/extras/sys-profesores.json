@@ -1,0 +1,15 @@
+[{
+  "idProfesor": 401,
+  "nombre": "Gustavo",
+  "apellido": "Branchscelli",
+  "email": "g.branch@facultad.edu.ar",
+  "materia": "Programación Orientada a Objetos"
+},
+{
+  "idProfesor": 402,
+  "nombre": "María",
+  "apellido": "García",
+  "email": "m.garcia@facultad.edu.ar",
+  "materia": "Base de Datos"
+}
+]
