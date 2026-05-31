@@ -239,6 +239,5 @@ Asocia las calificaciones finales u parciales obtenidas por los alumnos en una d
 
 <!-- ### El archivo README.md debe incluir lo siguiente: ###
 
-- Un 90% de las funciones explicadas a detalle.
 - Link del deploy en Render.
 - Link al repositorio con el front-end. -->
