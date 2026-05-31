@@ -71,16 +71,16 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
     │── .gitignore                         # Archivos y carpetas ignorados por el control de versiones (incluye `node_modules`).
     │── controllers/                       # Lógica de negocio y manejo de las peticiones respuestas.
     │   ├── alumnoController.js
-    │   ├── 
-    │   ├── 
-    │   └── 
+    │   ├── profesor.controller.js
+    │   ├── materia.controller.js
+    │   └── nota.controller.js
     │── data/                               # Directorio donde se almacena el archivo `alumnos.json` que actúa como base de datos estática.
     │   ├── sys-materias.json
     │   ├── sys-notas.json
     │   ├── sys-profesores.json
     │   └── alumnos.json
     │── models/                            # Clases en TypeScript utilizadas para instanciar y validar los objetos (ej. `alumno.model.ts`).
-    │   ├── clase.model.ts
+    │   ├── materia.model.ts
     │   ├── nota.model.ts
     │   ├── profesor.model.ts   
     │   ├── alumno.model.ts
