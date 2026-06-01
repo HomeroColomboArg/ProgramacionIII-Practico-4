@@ -1,9 +1,9 @@
 const fs = require('fs').promises
-import AlumnoModel from '../models/alumno.model'
+//import AlumnoModel from '../models/alumno.model'
 
 const getAlumnoAll = async (req, res) => {
   try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
+    const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
     return res.status(200).json(alumnos)
@@ -17,7 +17,7 @@ const getAlumnoAll = async (req, res) => {
 
 const getAlumnoById = async (req, res) => {
   try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
+    const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
     const { legajo } = req.params
@@ -43,7 +43,7 @@ const getAlumnoById = async (req, res) => {
 
 const addAlumno = async (req, res) => {
   try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
+    const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
     // Agregar validacion de estructura para el codigo de error 400
@@ -66,7 +66,7 @@ const addAlumno = async (req, res) => {
 
 const updateAlumno = async (req, res) => {
   try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
+    const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
     // Agregar validacion de estructura para el codigo de error 400
@@ -94,7 +94,7 @@ const updateAlumno = async (req, res) => {
 
 const deleteAlumno = async (req, res) => {
   try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
+    const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
 
     if (!alumnos.some((a) => a.legajo === req.params)) {
