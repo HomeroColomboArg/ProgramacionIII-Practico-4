@@ -6,12 +6,16 @@ class Server {
   constructor () {
     this.app = express()
     this.port = process.env.PORT || 3000
+
     this.middleware()
     this.rutas()
   }
 
   middleware () {
     this.app.use(cors())
+
+    // 🔥 ESTO ES LO QUE TE FALTABA (CRÍTICO)
+    this.app.use(express.json())
   }
 
   rutas () {
@@ -22,14 +26,12 @@ class Server {
     this.app.use('/profesores', require('../routes/extra/profesor.routes'))
     */
 
-    // manejo de errores
-    this.app.use((req, res, next) => {
-      return res.status(400).json({ msg: 'Error.' })
+    // 🔥 404 - SI NO ENCUENTRA RUTA
+    this.app.use((req, res) => {
+      return res.status(404).json({ msg: 'Ruta no encontrada' })
     })
-    this.app.use((err, req, res, next) => {
-      console.error(err.stack)
-      return res.status(404).json({ msg: 'Error. Pagina no encontrada' })
-    })
+
+    // 🔥 ERROR HANDLER (OBLIGATORIO CON 4 PARAMETROS)
     this.app.use((err, req, res, next) => {
       console.error(err.stack)
       return res.status(500).json({ msg: 'Internal Server Error' })
@@ -38,7 +40,7 @@ class Server {
 
   listen () {
     this.app.listen(this.port, () => {
-      console.log(`La API esta escuchando el el puerto: ${this.port}`)
+      console.log(`La API está escuchando en el puerto: ${this.port}`)
     })
   }
 }
