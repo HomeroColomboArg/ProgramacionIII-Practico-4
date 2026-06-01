@@ -115,6 +115,26 @@ A continuación, se detalla la responsabilidad de cada integrante sobre los arch
 | 🟠 `PUT` | `/alumnos/:id` | Actualiza las propiedades de un alumno existente (no permite modificar el legajo). | `200`, `404`, `500` |
 | 🔴 `DELETE` | `/alumnos/:id` | Elimina el registro completo de un alumno de la base de datos a partir de su legajo. | `200`, `404`, `500` |
 
+### Pruebas de los Endpoints (Postman)
+
+A continuación, se adjuntan las capturas de pantalla de las pruebas realizadas en Postman sobre el deploy en Render, demostrando el correcto funcionamiento de los endpoints principales:
+
+**Prueba GET General (`/alumnos`)**
+
+![Prueba GET Alumnos](https://github.com/user-attachments/assets/eadf9443-d554-471c-a64f-625c53c336c4)
+
+**Prueba POST (`/alumnos`)**  
+
+![Prueba POST Alumno](https://github.com/user-attachments/assets/5ee5f97e-8eb8-4921-aef9-eba88d64a7fb)
+
+**Prueba PUT - Actualización de propiedades de alumno por numero de legajo (`/alumnos/:legajo`)**  
+
+![Prueba PUT Validación](https://github.com/user-attachments/assets/b6b7b010-fd43-4527-a7bc-b0bbc8580c1e)
+
+**Prueba DELETE(`/alumnos/:legajo`)**
+
+![Prueba DELETE](https://github.com/user-attachments/assets/5af7320b-5482-4b1b-a079-c67e6d465810)
+
 ## 👩‍💻 Funciones
 
 Detallamos el funcionamiento de los métodos principales. Todos utilizan sintaxis asíncrona (`async/await`) y bloques `try/catch` para manejar fallos inesperados.
