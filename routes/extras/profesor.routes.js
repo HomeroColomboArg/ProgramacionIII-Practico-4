@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import {
-  getProfesorAll,
+  getProfesoresAll,
   getProfesorById,
   addProfesor,
   updateProfesor,
@@ -9,7 +9,7 @@ import {
 
 const rutas = Router()
 
-rutas.get('/', getProfesorAll)
+rutas.get('/', getProfesoresAll)
 rutas.get('/:idProfesor', getProfesorById)
 rutas.post('/', addProfesor)
 rutas.put('/:idProfesor', updateProfesor)

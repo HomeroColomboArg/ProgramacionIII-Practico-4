@@ -4,7 +4,7 @@ import { ProfesorModel } from '../models/profesor.model';
 const DATA_PATH = './data/sys-profesores.json';
 
 // GET ALL PROFESORES
-const getProfesoresAll = async (req, res) => {
+export const getProfesoresAll = async (req, res) => {
   try {
     const data = await fs.readFile(DATA_PATH, 'utf8');
     const profesores = JSON.parse(data);
@@ -19,7 +19,7 @@ const getProfesoresAll = async (req, res) => {
 };
 
 // GET PROFESOR BY ID
-const getProfesorById = async (req, res) => {
+export const getProfesorById = async (req, res) => {
   try {
     const data = await fs.readFile(DATA_PATH, 'utf8');
     const profesores = JSON.parse(data);
@@ -46,7 +46,7 @@ const getProfesorById = async (req, res) => {
 };
 
 // ADD PROFESOR
-const addProfesor = async (req, res) => {
+export const addProfesor = async (req, res) => {
   try {
     const data = await fs.readFile(DATA_PATH, 'utf8');
     const profesores = JSON.parse(data);
@@ -91,7 +91,7 @@ const addProfesor = async (req, res) => {
 };
 
 // UPDATE PROFESOR (Materia)
-const updateProfesor = async (req, res) => {
+export const updateProfesor = async (req, res) => {
   try {
     const data = await fs.readFile(DATA_PATH, 'utf8');
     let profesores = JSON.parse(data);
@@ -137,7 +137,7 @@ const updateProfesor = async (req, res) => {
 };
 
 // DELETE PROFESOR
-const deleteProfesor = async (req, res) => {
+export const deleteProfesor = async (req, res) => {
   try {
     const data = await fs.readFile(DATA_PATH, 'utf8');
     let profesores = JSON.parse(data);
