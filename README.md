@@ -125,15 +125,15 @@ A continuación, se adjuntan las capturas de pantalla de las pruebas realizadas 
 
 **Prueba POST (`/alumnos`)**  
 
-![Prueba POST Alumno](https://github.com/user-attachments/assets/5ee5f97e-8eb8-4921-aef9-eba88d64a7fb)
+![Prueba POST Alumno](https://github.com/user-attachments/assets/b84afbc7-3494-43aa-9f3d-7143fc94a886)
 
 **Prueba PUT - Actualización de propiedades de alumno por numero de legajo (`/alumnos/:legajo`)**  
 
-![Prueba PUT Validación](https://github.com/user-attachments/assets/b6b7b010-fd43-4527-a7bc-b0bbc8580c1e)
+![Prueba PUT Validación](https://github.com/user-attachments/assets/123f8172-fc9d-4445-98dd-4c4749800fe8)
 
 **Prueba DELETE(`/alumnos/:legajo`)**
 
-![Prueba DELETE](https://github.com/user-attachments/assets/5af7320b-5482-4b1b-a079-c67e6d465810)
+![Prueba DELETE](https://github.com/user-attachments/assets/09bc10d4-b1f6-47bf-a827-17092f426b7d)
 
 ## 👩‍💻 Funciones
 
