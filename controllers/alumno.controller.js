@@ -5,7 +5,7 @@ const DATA_PATH = './data/alumnos.json'
 
 export const getAlumnoAll = async (req, res) => {
   try {
-    const data = await fs.readFile('./data/alumnos.json', 'utf8')
+    const data = await fs.readFile(DATA_PATH, 'utf8')
     const alumnos = JSON.parse(data)
 
     return res.status(200).json(alumnos)
@@ -18,22 +18,18 @@ export const getAlumnoAll = async (req, res) => {
 }
 
 export const getAlumnoById = async (req, res) => {
-  const { legajo } = req.params
-
   try {
-    const data = await fs.readFile('./data/alumnos.json', 'utf8')
+    const data = await fs.readFile(DATA_PATH, 'utf8')
     const alumnos = JSON.parse(data)
 
     const { legajo } = req.params
 
-    const alumno = alumnos.find(
-      (a) => a.legajo /* .toString() */ === Number(legajo)
-    )
+    const alumno = alumnos.find((a) => a.legajo === Number(legajo))
 
     if (!alumno) {
       return res
         .status(404)
-        .json({ msg: `No existe el alumno con el legajo ${legajo}` })
+        .json({ msg: `No existe ningún alumno con el legajo ${legajo}` })
     }
 
     return res.status(200).json(alumno)
@@ -47,7 +43,7 @@ export const getAlumnoById = async (req, res) => {
 
 export const addAlumno = async (req, res) => {
   try {
-    const data = await fs.readFile('./data/alumnos.json', 'utf8')
+    const data = await fs.readFile(DATA_PATH, 'utf8')
     const alumnos = JSON.parse(data)
 
     if (alumnos.some((a) => a.legajo === req.body.legajo)) {
@@ -60,53 +56,47 @@ export const addAlumno = async (req, res) => {
     alumnos.push(req.body)
 
     // 2. Escribir el array actualizado en el archivo
-    await fs.writeFile('./data/alumnos.json', JSON.stringify(alumnos, null, 2), 'utf8')
+    await fs.writeFile(DATA_PATH, JSON.stringify(alumnos, null, 2), 'utf8')
 
     return res.status(201).json({ msg: 'Alumno agregado exitosamente' })
   } catch (error) {
     console.log(error)
-    return res.status(500).json({ msg: 'Ha habido un error al agregar al alumno' })
+    return res
+      .status(500)
+      .json({ msg: 'Ha habido un error al agregar al alumno' })
   }
 }
 
 export const updateAlumno = async (req, res) => {
-  const { legajo } = req.params
-
   try {
-    console.log('PARAMS:', req.params);
-    console.log('BODY:', req.body);
+    console.log('PARAMS:', req.params)
+    console.log('BODY:', req.body)
 
-    const data = await fs.readFile('./data/alumnos.json', 'utf8')
+    const data = await fs.readFile(DATA_PATH, 'utf8')
     const alumnos = JSON.parse(data)
 
     const { legajo } = req.params
 
-    const alumno = alumnos.find(
-      (a) => a.legajo === Number(legajo)
-    )
+    const alumno = alumnos.find((a) => a.legajo === Number(legajo))
 
-    console.log('ALUMNO ENCONTRADO:', alumno);
+    console.log('ALUMNO ENCONTRADO:', alumno)
 
     if (index === -1) {
       return res
         .status(404)
-        .json({ msg: `No existe el alumno con el legajo ${legajo}` })
+        .json({ msg: `No existe ningún alumno con el legajo ${legajo}` })
     }
 
     alumno.nombre = req.body.nombre
     alumno.apellido = req.body.apellido
 
-    console.log('ALUMNO MODIFICADO:', alumno);
+    console.log('ALUMNO MODIFICADO:', alumno)
 
-    await fs.writeFile(
-      './data/alumnos.json',
-      JSON.stringify(alumnos, null, 2)
-    )
+    await fs.writeFile(DATA_PATH, JSON.stringify(alumnos, null, 2))
 
     return res.status(200).json({
       msg: 'Alumno actualizado exitosamente'
     })
-
   } catch (error) {
     console.log(error)
 
@@ -117,44 +107,34 @@ export const updateAlumno = async (req, res) => {
 }
 
 export const deleteAlumno = async (req, res) => {
-  const { legajo } = req.params
-
   try {
-    const data = await fs.readFile('./data/alumnos.json', 'utf8');
-    let alumnos = JSON.parse(data);
+    const data = await fs.readFile(DATA_PATH, 'utf8')
+    let alumnos = JSON.parse(data)
 
-    const { legajo } = req.params;
+    const { legajo } = req.params
 
-    const existe = alumnos.some(
-      (a) => a.legajo === Number(legajo)
-    );
+    const existe = alumnos.some((a) => a.legajo === Number(legajo))
 
     if (!existe) {
       return res.status(404).json({
-        msg: `No existe ningun alumno con el legajo ${legajo}`
-      });
+        msg: `No existe ningún alumno con el legajo ${legajo}`
+      })
     }
 
-    alumnos = alumnos.filter(
-      (a) => a.legajo !== Number(legajo)
-    );
+    alumnos = alumnos.filter((a) => a.legajo !== Number(legajo))
 
-    await fs.writeFile(
-      './data/alumnos.json',
-      JSON.stringify(alumnos, null, 2)
-    );
+    await fs.writeFile(DATA_PATH, JSON.stringify(alumnos, null, 2))
 
     return res.status(200).json({
       msg: 'Alumno borrado exitosamente'
-    });
-
+    })
   } catch (error) {
     return res.status(500).json({
       msg: 'Ha habido un error al borrar al alumno',
       error: error.message
-    });
+    })
   }
-};
+}
 
 module.exports = {
   getAlumnoAll,
