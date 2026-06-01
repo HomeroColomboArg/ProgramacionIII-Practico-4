@@ -1,4 +1,4 @@
-import { PersonaModel } from './persona.model'
+import { PersonaModel } from './persona.model.ts'
 
 export class AlumnoModel extends PersonaModel {
   private legajo: number
