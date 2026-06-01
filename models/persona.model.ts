@@ -1,14 +1,19 @@
 export class PersonaModel {
-  constructor(
-    protected nombre: string,
-    protected apellido: string,
-    protected email: string
-  ) {}
+  protected nombre: string
+  protected apellido: string
+  protected email: string
+
+  constructor(nombre: string, apellido: string, email: string) {
+    this.nombre = nombre
+    this.apellido = apellido
+    this.email = email
+  }
 
   // nombre
   public getNombre(): string {
     return this.nombre
   }
+
   public setNombre(nombre: string): void {
     this.nombre = nombre
   }
@@ -17,11 +22,12 @@ export class PersonaModel {
   public getApellido(): string {
     return this.apellido
   }
+
   public setApellido(apellido: string): void {
     this.apellido = apellido
   }
 
-  // nombre completo (nombre + apelido)
+  // nombre completo
   public getNombreCompleto(): string {
     return `${this.nombre} ${this.apellido}`
   }
@@ -30,11 +36,12 @@ export class PersonaModel {
   public getEmail(): string {
     return this.email
   }
+
   public setEmail(email: string): void {
     this.email = email
   }
 
-  // devolver todos los atributos en un objeto literal/plano (es como un JSON)
+  // devolver atributos
   public getAllAttributes(): object {
     return {
       nombre: this.nombre,

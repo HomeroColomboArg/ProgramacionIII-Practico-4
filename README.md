@@ -232,12 +232,9 @@ Asocia las calificaciones finales u parciales obtenidas por los alumnos en una d
 ## 🚀 Deploy
 | Componente | Servicio | URL |
 | :--- | :--- | :--- |
-| **API / Backend** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) | [Ver Sitio]() |
-| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio]() |
+| **API / Backend** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white) | [Ver Sitio](https://programacioniii-practico-4-hpe3.onrender.com/alumnos) |
+| **Frontend** | ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?style=for-the-badge&logo=github&logoColor=white) | [Ver Sitio](https://nahuelete.github.io/ProgramacionIII-Practico-4-frontend/) |
 
+## 📦 Repositorio asociado
 
-
-<!-- ### El archivo README.md debe incluir lo siguiente: ###
-
-- Link del deploy en Render.
-- Link al repositorio con el front-end. -->
+* 🖥️ **Código Frontend:** [Nahuelete/ProgramacionIII-Practico-4-frontend](https://github.com/Nahuelete/ProgramacionIII-Practico-4-frontend)

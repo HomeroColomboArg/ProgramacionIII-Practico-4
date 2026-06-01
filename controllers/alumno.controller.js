@@ -1,7 +1,9 @@
 const fs = require('fs').promises
 //import AlumnoModel from '../models/alumno.model'
 
-const getAlumnoAll = async (req, res) => {
+const DATA_PATH = './data/alumnos.json'
+
+export const getAlumnoAll = async (req, res) => {
   try {
     const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
@@ -11,11 +13,13 @@ const getAlumnoAll = async (req, res) => {
     console.log(error)
     return res
       .status(500)
-      .json({ error: 'No se puedieron obtener los datos de los alumnos' })
+      .json({ error: 'No se pudieron obtener los datos de los alumnos' })
   }
 }
 
-const getAlumnoById = async (req, res) => {
+export const getAlumnoById = async (req, res) => {
+  const { legajo } = req.params
+
   try {
     const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
@@ -36,12 +40,12 @@ const getAlumnoById = async (req, res) => {
   } catch (error) {
     console.log(error)
     return res.status(500).json({
-      error: `No se pudo obtener el datalle del alumno con legajo n° ${legajo}`
+      error: `No se pudo obtener el detalle del alumno con legajo n° ${legajo}`
     })
   }
 }
 
-const addAlumno = async (req, res) => {
+export const addAlumno = async (req, res) => {
   try {
     const data = await fs.readFile('./data/alumnos.json', 'utf8')
     const alumnos = JSON.parse(data)
@@ -61,13 +65,13 @@ const addAlumno = async (req, res) => {
     return res.status(201).json({ msg: 'Alumno agregado exitosamente' })
   } catch (error) {
     console.log(error)
-    return res
-      .status(500)
-      .json({ msg: 'Ha habido un error al agregar al alumno' })
+    return res.status(500).json({ msg: 'Ha habido un error al agregar al alumno' })
   }
 }
 
-const updateAlumno = async (req, res) => {
+export const updateAlumno = async (req, res) => {
+  const { legajo } = req.params
+
   try {
     console.log('PARAMS:', req.params);
     console.log('BODY:', req.body);
@@ -83,7 +87,7 @@ const updateAlumno = async (req, res) => {
 
     console.log('ALUMNO ENCONTRADO:', alumno);
 
-    if (!alumno) {
+    if (index === -1) {
       return res
         .status(404)
         .json({ msg: `No existe el alumno con el legajo ${legajo}` })
@@ -112,7 +116,9 @@ const updateAlumno = async (req, res) => {
   }
 }
 
-const deleteAlumno = async (req, res) => {
+export const deleteAlumno = async (req, res) => {
+  const { legajo } = req.params
+
   try {
     const data = await fs.readFile('./data/alumnos.json', 'utf8');
     let alumnos = JSON.parse(data);
