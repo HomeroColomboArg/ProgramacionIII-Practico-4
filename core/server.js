@@ -12,6 +12,7 @@ class Server {
 
   middleware () {
     this.app.use(cors())
+    this.app.use(express.json())
   }
 
   rutas () {
@@ -23,15 +24,13 @@ class Server {
     */
     
     
+    const alumnoRoutes = require('../routes/alumno.routes')
+    this.app.use('/alumnos', alumnoRoutes.default || alumnoRoutes)
 
-    // manejo de errores
     this.app.use((req, res, next) => {
-      return res.status(400).json({ msg: 'Error.' })
-    })
-    this.app.use((err, req, res, next) => {
-      console.error(err.stack)
       return res.status(404).json({ msg: 'Error. Pagina no encontrada' })
     })
+
     this.app.use((err, req, res, next) => {
       console.error(err.stack)
       return res.status(500).json({ msg: 'Internal Server Error' })
@@ -40,7 +39,7 @@ class Server {
 
   listen () {
     this.app.listen(this.port, () => {
-      console.log(`La API esta escuchando el el puerto: ${this.port}`)
+      console.log(`La API esta escuchando el puerto: ${this.port}`)
     })
   }
 }

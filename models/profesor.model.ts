@@ -1,4 +1,4 @@
-import { PersonaModel } from '../persona.model'
+import { PersonaModel } from './persona.model'
 
 export class ProfesorModel extends PersonaModel {
   private idProfesor: number
