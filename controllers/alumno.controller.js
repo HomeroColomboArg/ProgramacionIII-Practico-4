@@ -1,9 +1,11 @@
-const fs = require('fs').promises
-import AlumnoModel from '../models/alumno.model'
+import fs from 'fs/promises'
+import { AlumnoModel } from '../models/alumno.model.ts'
 
-const getAlumnoAll = async (req, res) => {
+const DATA_PATH = './data/alumnos.json'
+
+export const getAlumnoAll = async (req, res) => {
   try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
+    const data = await fs.readFile(DATA_PATH, 'utf8')
     const alumnos = JSON.parse(data)
 
     return res.status(200).json(alumnos)
@@ -11,16 +13,16 @@ const getAlumnoAll = async (req, res) => {
     console.log(error)
     return res
       .status(500)
-      .json({ error: 'No se puedieron obtener los datos de los alumnos' })
+      .json({ error: 'No se pudieron obtener los datos de los alumnos' })
   }
 }
 
-const getAlumnoById = async (req, res) => {
-  try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
-    const alumnos = JSON.parse(data)
+export const getAlumnoById = async (req, res) => {
+  const { legajo } = req.params
 
-    const { legajo } = req.params
+  try {
+    const data = await fs.readFile(DATA_PATH, 'utf8')
+    const alumnos = JSON.parse(data)
 
     const alumno = alumnos.find((a) => a.legajo === Number(legajo))
 
@@ -34,14 +36,14 @@ const getAlumnoById = async (req, res) => {
   } catch (error) {
     console.log(error)
     return res.status(500).json({
-      error: `No se pudo obtener el datalle del alumno con legajo n° ${legajo}`
+      error: `No se pudo obtener el detalle del alumno con legajo n° ${legajo}`
     })
   }
 }
 
-const addAlumno = async (req, res) => {
+export const addAlumno = async (req, res) => {
   try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
+    const data = await fs.readFile(DATA_PATH, 'utf8')
     const alumnos = JSON.parse(data)
 
     let alumnoNew
@@ -50,57 +52,68 @@ const addAlumno = async (req, res) => {
         req.body.legajo,
         req.body.nombre,
         req.body.apellido,
+        req.body.email,
         req.body.fechaAlta,
         req.body.modificacion,
         req.body.isActive
       )
     } catch (error) {
       console.log(error)
-      return res
-        .status(400)
-        .json({ msg: 'Los datos enviados no fueron validos' })
+      return res.status(400).json({ msg: 'Los datos enviados no fueron válidos' })
     }
 
-    if (alumnos.some((a) => a.legajo === alumnoNew.legajo)) {
+    if (alumnos.some((a) => a.legajo === alumnoNew.getLegajo())) {
       return res.status(409).json({
-        msg: `Un alumno ya fue registrado con el legajo ${alumnoNew.legajo}`
+        msg: `Un alumno ya fue registrado con el legajo ${alumnoNew.getLegajo()}`
       })
     }
 
-    alumnos.push(alumnoNew)
-    await fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
+    alumnos.push(alumnoNew.getAllAttributes())
+    await fs.writeFile(DATA_PATH, JSON.stringify(alumnos, null, 2))
+
     return res.status(201).json({ msg: 'Alumno agregado exitosamente' })
   } catch (error) {
     console.log(error)
-    return res
-      .status(500)
-      .json({ msg: 'Ha habido un error al agregar al alumno' })
+    return res.status(500).json({ msg: 'Ha habido un error al agregar al alumno' })
   }
 }
 
-const updateAlumno = async (req, res) => {
-  try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
-    let alumnos = JSON.parse(data)
+export const updateAlumno = async (req, res) => {
+  const { legajo } = req.params
 
-    let alumnoNew
-    try {
-      alumnoNew = new AlumnoModel(
-        req.params,
-        req.body.nombre,
-        req.body.apellido,
-        req.body.fechaAlta,
-        req.body.modificacion,
-        req.body.isActive
-      )
-    } catch (error) {
-      console.log(error)
+  try {
+    const data = await fs.readFile(DATA_PATH, 'utf8')
+    const alumnos = JSON.parse(data)
+
+    const index = alumnos.findIndex((a) => a.legajo === Number(legajo))
+
+    if (index === -1) {
       return res
-        .status(400)
-        .json({ msg: 'Los datos enviados no fueron validos' })
+        .status(404)
+        .json({ msg: `No existe el alumno con el legajo ${legajo}` })
     }
 
-    const { legajo } = req.params
+    alumnos[index] = {
+      ...alumnos[index],
+      ...req.body,
+      legajo: Number(legajo)
+    }
+
+    await fs.writeFile(DATA_PATH, JSON.stringify(alumnos, null, 2))
+
+    return res.status(200).json({ msg: 'Alumno actualizado exitosamente' })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ msg: 'Ha habido un error al actualizar el alumno' })
+  }
+}
+
+export const deleteAlumno = async (req, res) => {
+  const { legajo } = req.params
+
+  try {
+    const data = await fs.readFile(DATA_PATH, 'utf8')
+    let alumnos = JSON.parse(data)
 
     const alumno = alumnos.find((a) => a.legajo === Number(legajo))
 
@@ -110,48 +123,12 @@ const updateAlumno = async (req, res) => {
         .json({ msg: `No existe el alumno con el legajo ${legajo}` })
     }
 
-    alumnos = alumnos.filter((item) => item.legajo !== alumno.legajo)
-    alumnos.push(alumnoNew)
-    await fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
-    return res.status(200).json({ msg: 'Alumno actualizado exitosamente' })
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ msg: 'Ha habido un error al actualizar el alumno' })
-  }
-}
+    alumnos = alumnos.filter((item) => item.legajo !== Number(legajo))
+    await fs.writeFile(DATA_PATH, JSON.stringify(alumnos, null, 2))
 
-const deleteAlumno = async (req, res) => {
-  try {
-    const data = await fs.readFile('../data/alumnos.json', 'utf8')
-    let alumnos = JSON.parse(data)
-
-    const { legajo } = req.params
-
-    const alumno = alumnos.find(
-      (a) => a.legajo /* .toString() */ === Number(legajo)
-    )
-
-    if (!alumno) {
-      return res
-        .status(404)
-        .json({ msg: `No existe el alumno con el legajo ${legajo}` })
-    }
-
-    alumnos = alumnos.filter((item) => item.legajo !== alumno.legajo)
-    await fs.writeFile('../data/alumnos.json', JSON.stringify(alumnos, null, 2))
     return res.status(200).json({ msg: 'Alumno borrado exitosamente' })
   } catch (error) {
-    return res
-      .status(500)
-      .json({ msg: 'Ha habido un error al borrar al alumno' })
+    console.log(error)
+    return res.status(500).json({ msg: 'Ha habido un error al borrar al alumno' })
   }
-}
-
-module.exports = {
-  getAlumnoAll,
-  getAlumnoById,
-  addAlumno,
-  updateAlumno,
-  deleteAlumno
 }
