@@ -1,12 +1,12 @@
-const fs = require('fs').promises;
-import { ProfesorModel } from '../models/profesor.model'; // Ojo las llaves si la clase no es un export default
+import fs from 'fs/promises'
+import { ProfesorModel } from '../models/profesor.model';
 
-const PATH_JSON = '../data/extras/sys-profesores.json';
+const DATA_PATH = './data/sys-profesores.json';
 
 // GET ALL PROFESORES
 const getProfesoresAll = async (req, res) => {
   try {
-    const data = await fs.readFile(PATH_JSON, 'utf8');
+    const data = await fs.readFile(DATA_PATH, 'utf8');
     const profesores = JSON.parse(data);
 
     return res.status(200).json(profesores);
@@ -21,7 +21,7 @@ const getProfesoresAll = async (req, res) => {
 // GET PROFESOR BY ID
 const getProfesorById = async (req, res) => {
   try {
-    const data = await fs.readFile(PATH_JSON, 'utf8');
+    const data = await fs.readFile(DATA_PATH, 'utf8');
     const profesores = JSON.parse(data);
 
     const { idProfesor } = req.params;
@@ -48,7 +48,7 @@ const getProfesorById = async (req, res) => {
 // ADD PROFESOR
 const addProfesor = async (req, res) => {
   try {
-    const data = await fs.readFile(PATH_JSON, 'utf8');
+    const data = await fs.readFile(DATA_PATH, 'utf8');
     const profesores = JSON.parse(data);
 
     let profesorInstance;
@@ -79,7 +79,7 @@ const addProfesor = async (req, res) => {
 
     profesores.push(nuevoProfesorObj);
     
-    await fs.writeFile(PATH_JSON, JSON.stringify(profesores, null, 2));
+    await fs.writeFile(DATA_PATH, JSON.stringify(profesores, null, 2));
     
     return res.status(201).json({ msg: 'Profesor agregado exitosamente', data: nuevoProfesorObj });
   } catch (error) {
@@ -93,7 +93,7 @@ const addProfesor = async (req, res) => {
 // UPDATE PROFESOR (Materia)
 const updateProfesor = async (req, res) => {
   try {
-    const data = await fs.readFile(PATH_JSON, 'utf8');
+    const data = await fs.readFile(DATA_PATH, 'utf8');
     let profesores = JSON.parse(data);
 
     const { idProfesor } = req.params;
@@ -125,7 +125,7 @@ const updateProfesor = async (req, res) => {
     profesores = profesores.filter((p) => p.idProfesor !== Number(idProfesor));
     profesores.push(profesorInstance.getAllAttributes());
 
-    await fs.writeFile(PATH_JSON, JSON.stringify(profesores, null, 2));
+    await fs.writeFile(DATA_PATH, JSON.stringify(profesores, null, 2));
     
     return res.status(200).json({ msg: 'Profesor actualizado exitosamente', data: profesorInstance.getAllAttributes() });
   } catch (error) {
@@ -139,7 +139,7 @@ const updateProfesor = async (req, res) => {
 // DELETE PROFESOR
 const deleteProfesor = async (req, res) => {
   try {
-    const data = await fs.readFile(PATH_JSON, 'utf8');
+    const data = await fs.readFile(DATA_PATH, 'utf8');
     let profesores = JSON.parse(data);
 
     const { idProfesor } = req.params;
@@ -157,7 +157,7 @@ const deleteProfesor = async (req, res) => {
     // Removemos al profesor de la lista
     profesores = profesores.filter((p) => p.idProfesor !== Number(idProfesor));
     
-    await fs.writeFile(PATH_JSON, JSON.stringify(profesores, null, 2));
+    await fs.writeFile(DATA_PATH, JSON.stringify(profesores, null, 2));
     
     return res.status(200).json({ msg: 'Profesor borrado exitosamente' });
   } catch (error) {
@@ -168,7 +168,7 @@ const deleteProfesor = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   getProfesoresAll,
   getProfesorById,
   addProfesor,
