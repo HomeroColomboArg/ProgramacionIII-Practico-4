@@ -22,9 +22,7 @@ const getAlumnoById = async (req, res) => {
 
     const { legajo } = req.params
 
-    const alumno = alumnos.find(
-      (a) => a.legajo === Number(legajo)
-    )
+    const alumno = alumnos.find((a) => a.legajo === Number(legajo))
 
     if (!alumno) {
       return res
@@ -88,7 +86,7 @@ const updateAlumno = async (req, res) => {
     let alumnoNew
     try {
       alumnoNew = new AlumnoModel(
-        req.body.legajo,
+        req.params,
         req.body.nombre,
         req.body.apellido,
         req.body.fechaAlta,
@@ -104,9 +102,7 @@ const updateAlumno = async (req, res) => {
 
     const { legajo } = req.params
 
-    const alumno = alumnos.find(
-      (a) => a.legajo === Number(legajo)
-    )
+    const alumno = alumnos.find((a) => a.legajo === Number(legajo))
 
     if (!alumno) {
       return res
