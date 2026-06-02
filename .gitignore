@@ -28,6 +28,7 @@ Thumbs.db
 .vscode/
 .husky/
 .eslintrc.json
+package-lock.json
 
 # Carpeta de compilación TypeScript
 dist/

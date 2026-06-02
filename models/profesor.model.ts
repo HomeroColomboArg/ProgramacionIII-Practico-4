@@ -1,4 +1,4 @@
-import { PersonaModel } from './persona.model'
+import { PersonaModel } from './persona.model.ts'
 
 export class ProfesorModel extends PersonaModel {
   private idProfesor: number
@@ -16,7 +16,7 @@ export class ProfesorModel extends PersonaModel {
     this.materia = materia
   }
 
-  //GET
+  // GET
   public getIdProfesor(): number {
     return this.idProfesor
   }
@@ -25,13 +25,12 @@ export class ProfesorModel extends PersonaModel {
     return this.materia
   }
 
-  //SET
-
+  // SET
   public setMateria(otraMateria: string): void {
     this.materia = otraMateria
   }
 
-  //JSON
+  // JSON
   public getAllAttributes(): object {
     return {
       idProfesor: this.idProfesor,
