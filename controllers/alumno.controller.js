@@ -61,9 +61,7 @@ export const addAlumno = async (req, res) => {
     return res.status(201).json({ msg: 'Alumno agregado exitosamente' })
   } catch (error) {
     console.log(error)
-    return res
-      .status(500)
-      .json({ msg: 'Ha habido un error al agregar al alumno' })
+    return res.status(500).json({ msg: 'Ha habido un error al agregar al alumno', error: error.message})
   }
 }
 
@@ -75,7 +73,11 @@ export const updateAlumno = async (req, res) => {
     const data = await fs.readFile(DATA_PATH, 'utf8')
     const alumnos = JSON.parse(data)
 
-    const { legajo } = req.params
+    if (index === -1) {
+      return res.status(404).json({
+        msg: `No existe el alumno con el legajo ${legajo}`
+      })
+    }
 
     const alumno = alumnos.find((a) => a.legajo === Number(legajo))
 
@@ -134,12 +136,4 @@ export const deleteAlumno = async (req, res) => {
       error: error.message
     })
   }
-}
-
-module.exports = {
-  getAlumnoAll,
-  getAlumnoById,
-  addAlumno,
-  updateAlumno,
-  deleteAlumno
-}
+};
