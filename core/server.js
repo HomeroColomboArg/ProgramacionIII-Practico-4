@@ -16,16 +16,11 @@ class Server {
   }
 
   rutas () {
-    this.app.use('/alumnos', require('../routes/alumno.routes'))
-    this.app.use('/profesores', require('../routes/extra/profesor.routes'))
-    /*
-    this.app.use('/materias', require('../routes/extra/materia.routes'))
-    this.app.use('/notas', require('../routes/extra/nota.routes'))
-    */
-    
-    
+    const profesorRoutes = require('../routes/extras/profesor.routes')
     const alumnoRoutes = require('../routes/alumno.routes')
     this.app.use('/alumnos', alumnoRoutes.default || alumnoRoutes)
+    this.app.use('/profesores', profesorRoutes.default || profesorRoutes)
+    
 
     this.app.use((req, res, next) => {
       return res.status(404).json({ msg: 'Error. Pagina no encontrada' })
