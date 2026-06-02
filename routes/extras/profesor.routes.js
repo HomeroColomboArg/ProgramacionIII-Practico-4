@@ -1,18 +1,18 @@
-const { Router } = require('express')
-const {
-  getProfesorAll,
+import { Router } from 'express'
+import {
+  getProfesoresAll,
   getProfesorById,
   addProfesor,
   updateProfesor,
   deleteProfesor
-} = require('../controllers/profesor.controller')
+} from '../../controllers/profesor.controller.js'
 
 const rutas = Router()
 
-rutas.get('/profesores', getProfesorAll)
+rutas.get('/', getProfesoresAll)
 rutas.get('/:idProfesor', getProfesorById)
-rutas.post('/profesor', addProfesor)
-rutas.put('/:profesor', updateProfesor)
+rutas.post('/', addProfesor)
+rutas.put('/:idProfesor', updateProfesor)
 rutas.delete('/:idProfesor', deleteProfesor)
 
-module.exports = rutas
+export default rutas
