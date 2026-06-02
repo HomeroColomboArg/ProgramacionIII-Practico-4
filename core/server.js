@@ -17,24 +17,32 @@ class Server {
   }
 
   rutas () {
-    this.app.use('/alumnos', require('../routes/alumno.routes'))
-    this.app.use('/profesores', require('../routes/extras/profesor.routes'))
-    /*
-    this.app.use('/materias', require('../routes/extra/materia.routes'))
-    this.app.use('/notas', require('../routes/extra/nota.routes'))
-    */
-    
-    
     const alumnoRoutes = require('../routes/alumno.routes')
+    const profesorRoutes = require('../routes/extras/profesor.routes')
+
     this.app.use('/alumnos', alumnoRoutes.default || alumnoRoutes)
+    this.app.use('/profesores', profesorRoutes.default || profesorRoutes)
+
+    /*
+    const materiaRoutes = require('../routes/extra/materia.routes')
+    const notaRoutes = require('../routes/extra/nota.routes')
+
+    this.app.use('/materias', materiaRoutes.default || materiaRoutes)
+    this.app.use('/notas', notaRoutes.default || notaRoutes)
+    */
 
     this.app.use((req, res, next) => {
-      return res.status(404).json({ msg: 'Error. Pagina no encontrada' })
+      return res.status(404).json({
+        msg: 'Error. Pagina no encontrada'
+      })
     })
 
     this.app.use((err, req, res, next) => {
       console.error(err.stack)
-      return res.status(500).json({ msg: 'Internal Server Error' })
+
+      return res.status(500).json({
+        msg: 'Internal Server Error'
+      })
     })
   }
 
