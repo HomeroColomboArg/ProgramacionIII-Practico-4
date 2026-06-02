@@ -1,5 +1,14 @@
 [
   {
+    "legajo": 10003,
+    "nombre": "Julieta",
+    "apellido": "AAA",
+    "email": "j.martinez@facultad.edu.ar",
+    "fechaAlta": "2026-03-03",
+    "modificacion": "2026-03-03",
+    "isActive": false
+  },
+  {
     "legajo": 10004,
     "nombre": "Mateo",
     "apellido": "Pérez",

@@ -13,25 +13,25 @@ class Server {
 
   middleware () {
     this.app.use(cors())
-
-    // 🔥 ESTO ES LO QUE TE FALTABA (CRÍTICO)
     this.app.use(express.json())
   }
 
   rutas () {
     this.app.use('/alumnos', require('../routes/alumno.routes'))
+    this.app.use('/profesores', require('../routes/extras/profesor.routes'))
     /*
     this.app.use('/materias', require('../routes/extra/materia.routes'))
     this.app.use('/notas', require('../routes/extra/nota.routes'))
-    this.app.use('/profesores', require('../routes/extra/profesor.routes'))
     */
+    
+    
+    const alumnoRoutes = require('../routes/alumno.routes')
+    this.app.use('/alumnos', alumnoRoutes.default || alumnoRoutes)
 
-    // 🔥 404 - SI NO ENCUENTRA RUTA
-    this.app.use((req, res) => {
-      return res.status(404).json({ msg: 'Ruta no encontrada' })
+    this.app.use((req, res, next) => {
+      return res.status(404).json({ msg: 'Error. Pagina no encontrada' })
     })
 
-    // 🔥 ERROR HANDLER (OBLIGATORIO CON 4 PARAMETROS)
     this.app.use((err, req, res, next) => {
       console.error(err.stack)
       return res.status(500).json({ msg: 'Internal Server Error' })
@@ -40,7 +40,7 @@ class Server {
 
   listen () {
     this.app.listen(this.port, () => {
-      console.log(`La API está escuchando en el puerto: ${this.port}`)
+      console.log(`La API esta escuchando el puerto: ${this.port}`)
     })
   }
 }
